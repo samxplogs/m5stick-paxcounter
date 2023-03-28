@@ -27,6 +27,11 @@ void loop() {
   M5.Lcd.setTextFont(2);
   M5.Lcd.setTextSize(1);
   M5.Lcd.setTextColor(TFT_GREEN, TFT_BLACK);
-  M5.Lcd.printf("Bluetooth \r\n %d", deviceCount);
+
+  // Get the battery voltage and calculate the remaining percentage
+  float voltage = M5.Axp.GetBatVoltage();
+  int percentage = map(voltage, 3.0, 4.2, 0, 100);
+
+  M5.Lcd.printf("Bluetooth: \r\n %d \r\n \r\n Battery: \r\n %d%%", deviceCount, percentage);
   delay(1000);
 }
